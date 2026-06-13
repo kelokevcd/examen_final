@@ -1,6 +1,10 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+
+# Usar un estilo de gráfico más moderno (muy fácil de añadir para un principiante)
+plt.style.use('ggplot')
+
 datos = pd.read_csv("living (6) (3).csv", encoding="latin1")
 print(datos.info())
 print(datos.head(20))
@@ -31,21 +35,33 @@ print("------------------------------")
 
 # Los 10 países con el costo de vida más alto
 top_10_altos = nuevo.sort_values(by="Cost of living, 2017", ascending=False).head(10)
-plt.bar(top_10_altos["Countries"], top_10_altos["Cost of living, 2017"])
-plt.title("Los 10 países con el costo de vida más alto")
+plt.figure(figsize=(10, 6))
+plt.bar(top_10_altos["Countries"], top_10_altos["Cost of living, 2017"], color='#FF6F61', edgecolor='black')
+plt.title("Los 10 países con el costo de vida más alto", fontsize=14, fontweight='bold')
+plt.ylabel("Índice de Costo de Vida", fontsize=12)
+plt.xlabel("Países", fontsize=12)
 plt.xticks(rotation=45)
+plt.tight_layout()
 plt.show()
 
 # Los 10 países con el costo de vida más bajo
 top_10_bajos = nuevo.sort_values(by="Cost of living, 2017", ascending=True).head(10)
-plt.bar(top_10_bajos["Countries"], top_10_bajos["Cost of living, 2017"])
-plt.title("Los 10 países con el costo de vida más bajo")
+plt.figure(figsize=(10, 6))
+plt.bar(top_10_bajos["Countries"], top_10_bajos["Cost of living, 2017"], color='#6B5B95', edgecolor='black')
+plt.title("Los 10 países con el costo de vida más bajo", fontsize=14, fontweight='bold')
+plt.ylabel("Índice de Costo de Vida", fontsize=12)
+plt.xlabel("Países", fontsize=12)
 plt.xticks(rotation=45)
+plt.tight_layout()
 plt.show()
 
 # El costo de vida de los países de América
 paises_america = nuevo[nuevo["Continent"] == "America"]
-plt.bar(paises_america["Countries"], paises_america["Cost of living, 2017"])
-plt.title("Costo de vida de los países de América")
+plt.figure(figsize=(12, 6))
+plt.bar(paises_america["Countries"], paises_america["Cost of living, 2017"], color='#88B04B', edgecolor='black')
+plt.title("Costo de vida de los países de América", fontsize=14, fontweight='bold')
+plt.ylabel("Índice de Costo de Vida", fontsize=12)
+plt.xlabel("Países", fontsize=12)
 plt.xticks(rotation=90)
+plt.tight_layout()
 plt.show()
